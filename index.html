@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spidy-Ahsan | Pattoki's Official Spider-Man</title>
+<meta name="description" content="Pattoki has a new guardian. Friendly, bearded, and slightly obsessed with chocolate cake. Meet Spidy-Ahsan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        bebas: ['"Bebas Neue"', 'sans-serif'],
+        anton: ['Anton', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      },
+      colors: {
+        spiderRed: '#E11D25',
+        spiderBlue: '#0B1C48',
+        deepBlack: '#08080A',
+        webGray: '#15151A',
+        offWhite: '#F5F5F0'
+      }
+    }
+  }
+}
+</script>
+<style>
+* { font-family: 'Inter', sans-serif; }
+.font-bebas { font-family: 'Bebas Neue', sans-serif; }
+.font-anton { font-family: 'Anton', sans-serif; }
+body { background:#08080A; color:#F5F5F0; overflow-x:hidden; }
+.grain::after {
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:0.04; z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+.web-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(225,29,37,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(11,28,72,0.4) 0%, transparent 50%);
+}
+.glass {
+  background: rgba(21,21,26,0.7);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.scroll-progress {
+  position:fixed; top:0; left:0; height:3px; background:#E11D25; z-index:9999; transform-origin:left;
+}
+.ticker {
+  white-space:nowrap; overflow:hidden; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.ticker-track { display:inline-block; animation:ticker 35s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state:paused; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.hero-parallax { will-change: transform; }
+.dossier-stamp {
+  transform: rotate(-12deg);
+  border: 3px solid #E11D25;
+  color:#E11D25;
+}
+.scanlines::after {
+  content:""; position:absolute; inset:0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 3px);
+  pointer-events:none;
+}
+.redacted { background:#E11D25; color:transparent; user-select:none; display:inline-block; padding:0 6px; }
+@keyframes drawWeb { to { stroke-dashoffset:0; } }
+.web-draw { stroke-dasharray:1000; stroke-dashoffset:1000; animation:drawWeb 2.5s ease-out forwards; }
+@keyframes sway { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(2deg)} }
+.sway { animation:sway 4s ease-in-out infinite; transform-origin:top center; }
+.count-up { font-variant-numeric: tabular-nums; }
+.lightbox { backdrop-filter: blur(20px); background: rgba(0,0,0,0.92); }
+</style>
+</head>
+<body class="grain web-bg">
+<div class="scroll-progress" id="progress"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-spiderRed rounded-[8px] flex items-center justify-center font-bebas text-[20px] tracking-wider">S</div>
+      <span class="font-bebas text-[22px] tracking-[0.12em]">SPIDY-AHSAN</span>
+      <span class="hidden md:inline ml-3 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono tracking-widest">PATTOKI-01</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 font-mono text-[11px] tracking-[0.18em] text-white/60">
+      <a href="#home" class="nav-link hover:text-white transition" data-section="home">HOME</a>
+      <a href="#origin" class="nav-link hover:text-white transition" data-section="origin">ORIGIN</a>
+      <a href="#gallery" class="nav-link hover:text-white transition" data-section="gallery">FOOTAGE</a>
+      <a href="#powers" class="nav-link hover:text-white transition" data-section="powers">POWERS</a>
+    </div>
+    <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden glass border-t border-white/5 px-6 py-6 space-y-4 font-mono text-[12px] tracking-widest">
+    <a href="#home" class="block">HOME</a>
+    <a href="#origin" class="block">ORIGIN</a>
+    <a href="#gallery" class="block">FOOTAGE</a>
+    <a href="#powers" class="block">POWERS</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-[100vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img id="heroImg" src="assets/images/hero-climb.jpg" alt="Spidy-Ahsan climbing building at night in rain" class="hero-parallax w-full h-[120%] object-cover object-center scale-[1.05]">
+    <div class="absolute inset-0 bg-gradient-to-t from-deepBlack via-deepBlack/70 to-deepBlack/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-deepBlack via-deepBlack/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-[#08080A]/40"></div>
+  </div>
+
+  <!-- Web SVG corner -->
+  <svg class="absolute top-0 right-0 w-[420px] h-[420px] opacity-[0.18] pointer-events-none hidden lg:block" viewBox="0 0 400 400" fill="none">
+    <g stroke="white" stroke-width="0.7" opacity="0.8">
+      <path class="web-draw" d="M400 0 L0 400 M400 80 L80 400 M400 160 L160 400 M400 240 L240 400 M400 320 L320 400 M400 0 L400 400 L0 400" />
+      <path class="web-draw" style="animation-delay:0.3s" d="M400 0 Q300 100 200 200 Q100 300 0 400" />
+      <path class="web-draw" style="animation-delay:0.6s" d="M400 0 Q250 150 100 250 Q50 300 0 400" />
+      <path class="web-draw" style="animation-delay:0.9s" d="M400 0 Q350 80 300 160 Q200 280 0 380" />
+    </g>
+  </svg>
+
+  <!-- Dangling spider -->
+  <div class="absolute top-0 right-[18%] hidden lg:block sway">
+    <div class="w-[1px] h-[140px] bg-white/20 mx-auto"></div>
+    <div class="w-6 h-6 -mt-1 -ml-[11px] text-white/30 text-[18px]">🕷</div>
+  </div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full pt-[120px] pb-20">
+    <div class="max-w-[720px]">
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="px-3 py-1 rounded-full bg-spiderRed text-white font-mono text-[10px] tracking-[0.2em]">FRIENDLY NEIGHBORHOOD HERO</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] tracking-[0.2em] text-white/70">EST. 2025 • PATTOKI</span>
+        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] tracking-[0.2em] text-white/70">CLASSIFIED</span>
+      </div>
+      <h1 class="font-bebas leading-[0.85] tracking-[-0.02em]">
+        <span class="block text-[22px] md:text-[28px] tracking-[0.3em] text-white/60 font-mono font-normal mb-2">THE AMAZING</span>
+        <span class="block text-[72px] md:text-[128px] lg:text-[148px] text-offWhite">SPIDY-<span class="text-spiderRed">AHSAN</span></span>
+      </h1>
+      <p class="mt-6 text-[18px] md:text-[22px] leading-[1.4] text-white/80 max-w-[560px] font-light">
+        Pattoki has a new guardian. He can climb walls, shoot webs, lift rocks... and he will absolutely finish your chocolate cake.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#origin" class="px-8 h-[48px] bg-spiderRed hover:bg-[#C41A20] text-white font-mono text-[12px] tracking-[0.2em] flex items-center gap-3 transition">
+          VIEW SECRET IDENTITY <span>→</span>
+        </a>
+        <a href="#gallery" class="px-8 h-[48px] glass hover:bg-white/10 text-white font-mono text-[12px] tracking-[0.2em] flex items-center transition">
+          CLASSIFIED FOOTAGE
+        </a>
+      </div>
+      <div class="mt-14 grid grid-cols-3 gap-6 max-w-[440px] border-t border-white/10 pt-6">
+        <div><div class="font-bebas text-[32px] leading-none">98%</div><div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">WEB ACCURACY</div></div>
+        <div><div class="font-bebas text-[32px] leading-none">2%</div><div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">SELF-HITS</div></div>
+        <div><div class="font-bebas text-[32px] leading-none">24/7</div><div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">ON CALL (MAYBE SLEEPING)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker bg-[#0F0F12] h-[44px] flex items-center">
+  <div class="ticker-track flex items-center gap-12 font-mono text-[11px] tracking-[0.2em] text-white/50">
+    <span>⚠ NOW WITH 12% MORE CAKE • WARNING: MAY ENTHUSE ABOUT PIZZA • PATTOKI'S OFFICIAL SPIDER-MAN • FRIENDLY NEIGHBORHOOD HERO • NOT AFFILIATED WITH MARVEL (BUT SHOULD BE) • </span>
+    <span>⚠ NOW WITH 12% MORE CAKE • WARNING: MAY ENTHUSE ABOUT PIZZA • PATTOKI'S OFFICIAL SPIDER-MAN • FRIENDLY NEIGHBORHOOD HERO • NOT AFFILIATED WITH MARVEL (BUT SHOULD BE) • </span>
+  </div>
+</div>
+
+<!-- ORIGIN -->
+<section id="origin" class="relative py-24 md:py-36 border-t border-white/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+      <div class="lg:w-[54%] relative">
+        <div class="relative rounded-[16px] overflow-hidden border border-white/10 bg-webGray">
+          <div class="absolute top-4 left-4 z-20 flex gap-2">
+            <span class="px-2.5 py-1 bg-black/70 backdrop-blur rounded-full font-mono text-[10px] tracking-widest">EXHIBIT A</span>
+            <span class="px-2.5 py-1 bg-spiderRed rounded-full font-mono text-[10px] tracking-widest text-white">LIVE FOOTAGE</span>
+          </div>
+          <img src="assets/images/cake-mess.jpg" alt="Ahsan as Spider-Man eating chocolate cake in web-filled room" class="w-full aspect-[4/3] object-cover">
+          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <p class="font-mono text-[11px] tracking-widest text-white/70">LOCATION: PATTOKI - UNDISCLOSED APARTMENT • TIME: 02:47 AM • STATUS: CAKE COMPROMISED</p>
+          </div>
+        </div>
+        <!-- floating stats -->
+        <div class="mt-6 grid grid-cols-3 gap-3">
+          <div class="glass rounded-[12px] p-4">
+            <div class="font-bebas text-[28px] leading-none count-up" data-target="347">0</div>
+            <div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">PIZZAS EATEN</div>
+          </div>
+          <div class="glass rounded-[12px] p-4">
+            <div class="font-bebas text-[28px] leading-none">1200+</div>
+            <div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">WEBS WASTED</div>
+          </div>
+          <div class="glass rounded-[12px] p-4 border border-spiderRed/30">
+            <div class="font-bebas text-[28px] leading-none text-spiderRed count-up" data-target="89">0</div>
+            <div class="font-mono text-[10px] tracking-widest text-white/50 mt-1">CAKES STOLEN</div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-[46%] lg:sticky lg:top-28">
+        <div class="font-mono text-[11px] tracking-[0.3em] text-spiderRed mb-4">ORIGIN STORY // FILE #AH-001</div>
+        <h2 class="font-bebas text-[56px] md:text-[72px] leading-[0.9] tracking-[-0.01em]">HOW IT <span class="text-white/40">STARTED</span></h2>
+        <div class="mt-8 space-y-6 text-[17px] leading-[1.7] text-white/75">
+          <p class="text-[20px] leading-[1.5] text-white border-l-2 border-spiderRed pl-6 italic">
+            "Bitten by a radioactive spider while reaching for the last slice of pizza. Now his room is full of webs, pizza boxes, and responsibilities."
+          </p>
+          <p>It wasn't supposed to happen like this. Ahsan was just a regular guy from Pattoki who loved two things: chocolate cake and not cleaning his room.</p>
+          <p>One fateful evening, while hunting for leftover pizza in a suspiciously web-covered apartment, he was bitten. Not by guilt. By a spider. A very ambitious spider.</p>
+          <p>Next morning, he woke up stuck to the ceiling, covered in webs, with a half-eaten cake floating mid-air. The city had a new hero. His mother had a new cleaning problem.</p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] tracking-widest">RADIOACTIVE BITE</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] tracking-widest">CEILING INCIDENT</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] tracking-widest">CAKE LEVITATION</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY / DOSSIER -->
+<section class="relative py-24 md:py-32 bg-[#0F0F12] border-y border-white/5 overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+  <div class="max-w-[1200px] mx-auto px-6 md:px-10 relative">
+    <div class="glass rounded-[20px] overflow-hidden border border-white/10">
+      <div class="h-[48px] bg-white/[0.03] border-b border-white/5 flex items-center justify-between px-6 font-mono text-[11px] tracking-widest text-white/40">
+        <span>S.H.I.E.L.D DOSSIER // LEVEL 7 CLEARANCE REQUIRED</span>
+        <span class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> VERIFIED</span>
+      </div>
+      <div class="grid md:grid-cols-[380px_1fr] gap-0">
+        <div class="relative bg-black/40 p-6 scanlines">
+          <div class="dossier-stamp absolute top-8 right-6 z-20 px-3 py-1 font-bebas text-[18px] tracking-widest bg-transparent">CLASSIFIED</div>
+          <div class="relative rounded-[12px] overflow-hidden border border-white/10 aspect-[3/4]">
+            <img src="assets/images/indoor-hero.jpg" alt="Ahsan indoor as Spider-Man" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-4">
+              <div class="font-mono text-[10px] tracking-widest text-white/60">SUBJECT: AHSAN // ALIAS: SPIDY-AHSAN</div>
+            </div>
+          </div>
+          <div class="mt-4 space-y-2 font-mono text-[11px]">
+            <div class="flex justify-between"><span class="text-white/40">THREAT LEVEL</span><span class="text-amber-300">CHARMING</span></div>
+            <div class="flex justify-between"><span class="text-white/40">STATUS</span><span class="text-emerald-300">ACTIVE (PROBABLY SLEEPING)</span></div>
+            <div class="flex justify-between"><span class="text-white/40">LOCATION</span><span>PATTOKI, PK</span></div>
+            <div class="pt-2"><div class="h-[32px] bg-white/5 rounded flex items-center justify-center tracking-[0.3em]">|||| |||| |||| ||||</div><div class="text-center text-[9px] tracking-widest text-white/30 mt-1">BARCODE: SPIDY-AHSAN-001</div></div>
+          </div>
+        </div>
+        <div class="p-8 md:p-12">
+          <h3 class="font-bebas text-[48px] leading-[0.9]">BY DAY: AHSAN.<br><span class="text-spiderRed">BY NIGHT: THE HERO</span><br><span class="text-white/30">PATTOKI DIDN'T ASK FOR.</span></h3>
+          <div class="mt-8 grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-mono text-[11px] tracking-[0.2em] text-white/50 mb-3">KNOWN ASSOCIATES</h4>
+              <ul class="space-y-2 text-[14px] text-white/70">
+                <li>• Pizza delivery guy (on speed dial)</li>
+                <li>• Guy in black shalwar kameez who keeps photobombing mountain shots</li>
+                <li>• Local bakery (restraining order pending)</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-mono text-[11px] tracking-[0.2em] text-white/50 mb-3">WEAKNESSES</h4>
+              <ul class="space-y-2 text-[14px] text-white/70">
+                <li>• Chocolate cake (critical)</li>
+                <li>• <span class="redacted">MOM'S CALLS DURING PATROL</span></li>
+                <li>• Slippery bathroom tiles</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-10 p-5 rounded-[12px] bg-spiderRed/10 border border-spiderRed/20">
+            <div class="font-mono text-[11px] tracking-widest text-spiderRed mb-2">FIELD NOTE</div>
+            <p class="text-[15px] leading-[1.6] text-white/80">Subject insists suit is "for official superhero business" but evidence suggests 80% usage is for reaching high shelves and scaring pigeons. Still, Pattoki crime rate for stolen cakes has dropped to zero. Coincidence? We think not.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POWERS -->
+<section id="powers" class="py-24 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div>
+        <div class="font-mono text-[11px] tracking-[0.3em] text-spiderRed mb-3">ABILITIES // TESTED IN PATTOKI LABS</div>
+        <h2 class="font-bebas text-[56px] md:text-[80px] leading-[0.9]">POWERS & <span class="text-white/30">PROBLEMS</span></h2>
+      </div>
+      <p class="max-w-[360px] text-[15px] leading-[1.6] text-white/60">Lab-tested, mother-approved. Results may vary when cake is involved.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Power 1 -->
+      <div class="group glass rounded-[20px] overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-500 hover:-translate-y-1">
+        <div class="relative h-[320px] overflow-hidden">
+          <img src="assets/images/web-closeup.jpg" alt="Web shooting close-up" class="w-full h-full object-cover group-hover:scale-[1.05] transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur font-mono text-[10px] tracking-widest">ACCURACY TEST</div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex justify-between font-mono text-[10px] tracking-widest text-white/60 mb-2"><span>WEB ACCURACY</span><span>98%</span></div>
+            <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[98%] bg-white"></div></div>
+            <div class="flex justify-between font-mono text-[10px] tracking-widest text-white/60 mt-3 mb-2"><span>SELF-HITS</span><span class="text-amber-300">2%</span></div>
+            <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[2%] bg-amber-300"></div></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-bebas text-[28px] leading-none tracking-wide">WEB SHOOTERS</h3>
+          <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Can hit a fly from 20 meters. Also hits his own face 2% of the time. Still counts as training.</p>
+          <div class="mt-5 font-mono text-[11px] tracking-widest text-white/30">RANGE: 25M • TYPE: ORGANIC-ISH • SIDE EFFECT: STICKY FINGERS</div>
+        </div>
+      </div>
+
+      <!-- Power 2 -->
+      <div class="group glass rounded-[20px] overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-500 hover:-translate-y-1">
+        <div class="relative h-[320px] overflow-hidden">
+          <img src="assets/images/mountain-strength.jpg" alt="Super strength on mountain" class="w-full h-full object-cover group-hover:scale-[1.05] transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-spiderRed font-mono text-[10px] tracking-widest text-white">STRENGTH: 100%</div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex justify-between font-mono text-[10px] tracking-widest text-white/60 mb-2"><span>LIFT CAPACITY</span><span>~400KG (ONE ROCK SLAB)</span></div>
+            <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[85%] bg-spiderRed"></div></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-bebas text-[28px] leading-none tracking-wide">SUPER STRENGTH</h3>
+          <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Can lift a rock slab on a mountain with webs. Can't lift himself out of bed before 11 AM.</p>
+          <div class="mt-5 font-mono text-[11px] tracking-widest text-white/30">TEST SITE: NORTHERN AREAS • WITNESS: GUY IN BLACK SHALWAR</div>
+        </div>
+      </div>
+
+      <!-- Power 3 -->
+      <div class="group glass rounded-[20px] overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-500 hover:-translate-y-1">
+        <div class="relative h-[320px] overflow-hidden">
+          <img src="assets/images/hero-climb.jpg" alt="Wall crawling" class="w-full h-full object-cover object-top group-hover:scale-[1.05] transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur border border-white/10 font-mono text-[10px] tracking-widest">NIGHT OPS</div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex justify-between font-mono text-[10px] tracking-widest text-white/60 mb-2"><span>WALL ADHESION</span><span>RAIN TESTED ✓</span></div>
+            <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[92%] bg-white"></div></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-bebas text-[28px] leading-none tracking-wide">WALL CRAWLING</h3>
+          <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Works perfectly on glass skyscrapers in rain. Fails on freshly mopped kitchen floor. Science is weird.</p>
+          <div class="mt-5 font-mono text-[11px] tracking-widest text-white/30">SURFACE: GLASS • WEATHER: HEAVY RAIN • CITY: NEON LIGHTS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-24 md:py-32 bg-[#0F0F12] border-y border-white/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex items-center justify-between mb-12">
+      <h2 class="font-bebas text-[56px] md:text-[72px] leading-[0.9]">CLASSIFIED <span class="text-spiderRed">FOOTAGE</span></h2>
+      <div class="hidden md:flex items-center gap-3 font-mono text-[11px] tracking-widest text-white/40">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> 5 FILES • FACES PRESERVED 100% • NO AI EDITS
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[320px]">
+      <div class="md:col-span-7 relative group rounded-[16px] overflow-hidden border border-white/10 cursor-pointer gallery-item" data-src="assets/images/hero-climb.jpg" data-caption="Night patrol on glass building. Rain test: PASSED. Dramatic look: 100%.">
+        <img src="assets/images/hero-climb.jpg" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 p-6">
+          <div class="font-mono text-[10px] tracking-widest text-white/50 mb-1">FILE_02 // NIGHT_OPS</div>
+          <div class="font-bebas text-[22px] tracking-wide">WALL CRAWLER IN RAIN</div>
+        </div>
+      </div>
+      <div class="md:col-span-5 relative group rounded-[16px] overflow-hidden border border-white/10 cursor-pointer gallery-item" data-src="assets/images/cake-mess.jpg" data-caption="Exhibit A: The cake incident. Room was never the same.">
+        <img src="assets/images/cake-mess.jpg" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 p-6">
+          <div class="font-mono text-[10px] tracking-widest text-white/50 mb-1">FILE_01 // ORIGIN</div>
+          <div class="font-bebas text-[22px] tracking-wide">THE CAKE INCIDENT</div>
+        </div>
+      </div>
+      <div class="md:col-span-5 relative group rounded-[16px] overflow-hidden border border-white/10 cursor-pointer gallery-item" data-src="assets/images/mountain-strength.jpg" data-caption="Mountain test with special guest: guy in black shalwar kameez.">
+        <img src="assets/images/mountain-strength.jpg" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 p-6">
+          <div class="font-mono text-[10px] tracking-widest text-white/50 mb-1">FILE_03 // STRENGTH_TEST</div>
+          <div class="font-bebas text-[22px] tracking-wide">MOUNTAIN LIFT</div>
+        </div>
+      </div>
+      <div class="md:col-span-3 relative group rounded-[16px] overflow-hidden border border-white/10 cursor-pointer gallery-item" data-src="assets/images/indoor-hero.jpg" data-caption="Indoor hero pose. Bookshelf approved.">
+        <img src="assets/images/indoor-hero.jpg" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 p-5">
+          <div class="font-bebas text-[18px] tracking-wide">IDENTITY REVEAL</div>
+        </div>
+      </div>
+      <div class="md:col-span-4 relative group rounded-[16px] overflow-hidden border border-white/10 cursor-pointer gallery-item" data-src="assets/images/web-closeup.jpg" data-caption="Web shooter close-up. 98% accuracy.">
+        <img src="assets/images/web-closeup.jpg" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 p-5">
+          <div class="font-bebas text-[18px] tracking-wide">WEB CLOSE-UP</div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-2 font-mono text-[11px] tracking-widest text-white/30">
+      <span>NOTE: ALL FACES ARE ORIGINAL AND UNALTERED. PURE &lt;IMG SRC&gt; RENDERING. NO FACE SWAP. NO FILTERS.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-b from-spiderRed/20 via-deepBlack to-deepBlack"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-spiderRed/20 rounded-full blur-[120px]"></div>
+  </div>
+  <div id="spiderDrop" class="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 z-[60] hidden">
+    <div class="w-[1px] h-[200px] bg-white/30 mx-auto"></div>
+    <div class="text-[28px] -mt-2">🕷</div>
+  </div>
+  <div class="relative max-w-[900px] mx-auto px-6 md:px-10 text-center">
+    <div class="inline-flex px-4 py-1.5 rounded-full bg-white/5 border border-white/10 font-mono text-[11px] tracking-[0.2em] text-white/60 mb-8">PATTOKI EMERGENCY HOTLINE</div>
+    <h2 class="font-bebas text-[56px] md:text-[88px] leading-[0.85] tracking-[-0.02em]">NEED HELP?<br><span class="text-white/30">OR NEED SOMEONE TO</span><br><span class="text-spiderRed">EAT YOUR CAKE?</span></h2>
+    <p class="mt-6 text-[18px] leading-[1.6] text-white/60 max-w-[560px] mx-auto">He's available 24/7. Response time: 5 minutes if pizza is involved, 2 hours if it's actual crime. Priorities are priorities.</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <button id="callBtn" class="h-[56px] px-10 bg-white text-black font-mono text-[13px] tracking-[0.2em] font-semibold hover:bg-offWhite transition">CALL SPIDY-AHSAN →</button>
+      <a href="#home" class="h-[56px] px-10 glass flex items-center justify-center font-mono text-[13px] tracking-[0.2em] hover:bg-white/10 transition">BACK TO TOP</a>
+    </div>
+    <div id="toastContainer" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/5 py-12 bg-[#050508]">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between gap-8">
+    <div>
+      <div class="flex items-center gap-3"><div class="w-8 h-8 bg-spiderRed rounded-[6px] flex items-center justify-center font-bebas">S</div><span class="font-bebas text-[20px] tracking-widest">SPIDY-AHSAN</span></div>
+      <p class="mt-4 max-w-[360px] text-[13px] leading-[1.6] text-white/40">This is a friendly prank website made with love in Pattoki. Not affiliated with Marvel Studios, but Ahsan thinks he should be. All images are original uploads - faces preserved 100% with no AI alterations.</p>
+    </div>
+    <div class="font-mono text-[11px] tracking-widest text-white/30 space-y-2">
+      <div>BUILT FOR PRANK • MADE FOR LAUGHS</div>
+      <div>© 2025 SPIDY-AHSAN • PATTOKI, PK</div>
+      <div class="pt-4 text-white/20">P.S. Ahsan, if you're reading this - we love you, even when you eat the last cake slice.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox fixed inset-0 z-[100] hidden items-center justify-center p-6 md:p-12">
+  <button id="lightboxClose" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">✕</button>
+  <button id="lightboxPrev" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 hidden md:flex items-center justify-center text-white">‹</button>
+  <button id="lightboxNext" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 hidden md:flex items-center justify-center text-white">›</button>
+  <div class="max-w-[1200px] w-full">
+    <img id="lightboxImg" src="" alt="" class="w-full max-h-[75vh] object-contain rounded-[12px] border border-white/10">
+    <div class="mt-6 flex justify-between items-start gap-6">
+      <p id="lightboxCaption" class="text-[16px] leading-[1.5] text-white/80 max-w-[600px]"></p>
+      <div id="lightboxCounter" class="font-mono text-[11px] tracking-widest text-white/40 shrink-0"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Progress + navbar
+const progress = document.getElementById('progress');
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  progress.style.transform = `scaleX(${scrolled})`;
+  if(window.scrollY > 20){ navbar.classList.add('glass','border-white/5'); } else { navbar.classList.remove('glass','border-white/5'); }
+  // hero parallax
+  const heroImg = document.getElementById('heroImg');
+  if(heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.25}px) scale(1.05)`;
+  // active nav
+  document.querySelectorAll('section[id]').forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 100 && rect.bottom >= 100){
+      document.querySelectorAll('.nav-link').forEach(a=>a.classList.remove('text-white'));
+      const active = document.querySelector(`.nav-link[data-section="${sec.id}"]`);
+      if(active) active.classList.add('text-white');
+    }
+  });
+});
+
+// Count up
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      let cur=0; const inc=target/60;
+      const timer=setInterval(()=>{cur+=inc; if(cur>=target){cur=target; clearInterval(timer);} el.textContent=Math.floor(cur);},20);
+      observer.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.count-up').forEach(el=>observer.observe(el));
+
+// Mobile menu
+document.getElementById('mobileMenuBtn').addEventListener('click', ()=>{
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+
+// Gallery lightbox
+const items = Array.from(document.querySelectorAll('.gallery-item'));
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightboxImg');
+const lbCaption = document.getElementById('lightboxCaption');
+const lbCounter = document.getElementById('lightboxCounter');
+let currentIndex=0;
+function openLightbox(i){
+  currentIndex=i;
+  const item=items[i];
+  lbImg.src=item.dataset.src;
+  lbCaption.textContent=item.dataset.caption;
+  lbCounter.textContent=`${i+1} / ${items.length}`;
+  lightbox.classList.remove('hidden'); lightbox.classList.add('flex');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){ lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); document.body.style.overflow=''; }
+function next(){ openLightbox((currentIndex+1)%items.length); }
+function prev(){ openLightbox((currentIndex-1+items.length)%items.length); }
+items.forEach((el,i)=>el.addEventListener('click',()=>openLightbox(i)));
+document.getElementById('lightboxClose').addEventListener('click',closeLightbox);
+document.getElementById('lightboxNext').addEventListener('click',next);
+document.getElementById('lightboxPrev').addEventListener('click',prev);
+lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
+document.addEventListener('keydown',e=>{
+  if(lightbox.classList.contains('hidden')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowRight') next();
+  if(e.key==='ArrowLeft') prev();
+});
+
+// CTA spider drop + toast
+const messages=[
+  "🕷 Spidy-Ahsan is on his way... probably stuck in traffic (webs don't work on rickshaws).",
+  "📞 Calling... Ahsan didn't pick up. He's probably eating cake.",
+  "🍕 Emergency pizza delivery dispatched to Pattoki. Hero will follow.",
+  "🕸️ Web deployed! It landed on the neighbor's laundry. Again.",
+  "🎂 Cake protection protocol activated. No cake will be left behind."
+];
+function showToast(msg){
+  const c=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className='glass rounded-full px-6 py-3 font-mono text-[12px] tracking-wide text-white border border-white/10 shadow-2xl pointer-events-auto';
+  t.textContent=msg;
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(10px)'; t.style.transition='all 0.5s'; },3000);
+  setTimeout(()=>t.remove(),3600);
+}
+document.getElementById('callBtn').addEventListener('click',()=>{
+  const drop=document.getElementById('spiderDrop');
+  drop.classList.remove('hidden');
+  drop.animate([{transform:'translate(-50%, -100%)'},{transform:'translate(-50%, 20vh)'}],{duration:800,easing:'cubic-bezier(0.34,1.56,0.64,1)'});
+  setTimeout(()=>{ drop.classList.add('hidden'); showToast(messages[Math.floor(Math.random()*messages.length)]); },900);
+});
+
+// Tab easter egg
+let originalTitle=document.title;
+document.addEventListener('visibilitychange',()=>{
+  document.title = document.hidden ? "🕷 Spidy-Ahsan is on patrol... come back!" : originalTitle;
+});
+
+// Handle missing images gracefully - show branded placeholder but never fake face
+document.querySelectorAll('img').forEach(img=>{
+  img.addEventListener('error',()=>{
+    if(img.dataset.fallbackApplied) return;
+    img.dataset.fallbackApplied='1';
+    const placeholder=document.createElement('div');
+    placeholder.className='w-full h-full bg-[#15151A] border border-white/10 flex flex-col items-center justify-center p-6 text-center';
+    placeholder.innerHTML=`<div class="w-10 h-10 rounded-full bg-spiderRed/20 border border-spiderRed/30 flex items-center justify-center mb-3 font-bebas text-spiderRed">!</div><div class="font-mono text-[11px] tracking-widest text-white/50">AWAITING FOOTAGE</div><div class="font-mono text-[10px] text-white/30 mt-1">${img.alt||'Image missing'}</div>`;
+    placeholder.style.minHeight='200px';
+    img.replaceWith(placeholder);
+  });
+});
+</script>
+</body>
+</html>
