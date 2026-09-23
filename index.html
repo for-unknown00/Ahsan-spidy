@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spidy-Ahsan | Pattoki's Official Spider-Man</title>
+  <meta name="description" content="Spidy-Ahsan — Pattoki's own friendly neighborhood hero. Official fan tribute: origin story, confirmed powers, classified footage. Est. 2025, Pattoki.">
+  <meta name="theme-color" content="#0A0A0B">
+  <meta property="og:title" content="Spidy-Ahsan | Pattoki's Official Spider-Man">
+  <meta property="og:description" content="Pattoki has a new guardian. And he loves chocolate cake.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-climb.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='60' rx='13' ry='17' fill='%23E11D25'/%3E%3Ccircle cx='50' cy='38' r='8' fill='%23E11D25'/%3E%3Cg stroke='%23E11D25' stroke-width='5' stroke-linecap='round' fill='none'%3E%3Cpath d='M43 40 C32 32, 26 24, 22 12'/%3E%3Cpath d='M41 47 C28 44, 19 37, 12 28'/%3E%3Cpath d='M41 55 C28 57, 18 55, 9 50'/%3E%3Cpath d='M43 63 C33 70, 26 77, 21 88'/%3E%3Cpath d='M57 40 C68 32, 74 24, 78 12'/%3E%3Cpath d='M59 47 C72 44, 81 37, 88 28'/%3E%3Cpath d='M59 55 C72 57, 82 55, 91 50'/%3E%3Cpath d='M57 63 C67 70, 74 77, 79 88'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:     '#0A0A0B',
+            spider:  '#E11D25',
+            shield:  '#0B1C48',
+            bone:    '#F5F5F0',
+            webgray: '#1A1A1E'
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+            body:    ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Image fallback: branded placeholder if a photo is missing. Never edits a loaded photo. -->
+  <script>
+    function spidyFallback(img) {
+      img.onerror = null;
+      var label = (img.getAttribute('data-ph') || 'IMAGE PENDING').replace(/[<>&"]/g, '');
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">'
+        + '<rect width="800" height="1000" fill="#101014"/>'
+        + '<g stroke="#222229" stroke-width="2" fill="none">'
+        + '<circle cx="800" cy="0" r="140"/><circle cx="800" cy="0" r="280"/><circle cx="800" cy="0" r="420"/><circle cx="800" cy="0" r="560"/><circle cx="800" cy="0" r="700"/>'
+        + '<line x1="800" y1="0" x2="800" y2="720"/><line x1="800" y1="0" x2="580" y2="670"/><line x1="800" y1="0" x2="400" y2="490"/><line x1="800" y1="0" x2="205" y2="265"/><line x1="800" y1="0" x2="90" y2="0"/>'
+        + '</g>'
+        + '<g transform="translate(400,430)">'
+        + '<g stroke="#E11D25" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.9">'
+        + '<path d="M-14 -40 C-46 -64, -60 -88, -68 -128"/><path d="M-18 -22 C-60 -32, -84 -54, -102 -88"/><path d="M-18 6 C-60 10, -90 4, -122 -14"/><path d="M-14 30 C-40 52, -58 76, -70 128"/>'
+        + '<path d="M14 -40 C46 -64, 60 -88, 68 -128"/><path d="M18 -22 C60 -32, 84 -54, 102 -88"/><path d="M18 6 C60 10, 90 4, 122 -14"/><path d="M14 30 C40 52, 58 76, 70 128"/>'
+        + '</g>'
+        + '<ellipse cx="0" cy="20" rx="26" ry="34" fill="#E11D25"/>'
+        + '<circle cx="0" cy="-24" r="15" fill="#E11D25"/>'
+        + '</g>'
+        + '<text x="400" y="790" text-anchor="middle" font-family="monospace" font-size="24" letter-spacing="8" fill="#5B5B64">AWAITING FOOTAGE</text>'
+        + '<text x="400" y="840" text-anchor="middle" font-family="monospace" font-size="30" fill="#E11D25">' + label + '</text>'
+        + '<text x="400" y="905" text-anchor="middle" font-family="monospace" font-size="17" letter-spacing="2" fill="#3A3A42">DROP THE ORIGINAL PHOTO INTO /images</text>'
+        + '</svg>';
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+    document.documentElement.classList.add('js');
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #0A0A0B; }
+    ::selection { background: #E11D25; color: #fff; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0A0A0B; }
+    ::-webkit-scrollbar-thumb { background: #2a2a30; border-radius: 8px; border: 2px solid #0A0A0B; }
+    ::-webkit-scrollbar-thumb:hover { background: #E11D25; }
+
+    /* ---- Film grain ---- */
+    .grain {
+      position: fixed; inset: -50%; width: 200%; height: 200%;
+      pointer-events: none; z-index: 90; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ---- Scroll reveal ---- */
+    .js .reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .js .reveal.revealed { opacity: 1; transform: none; }
+
+    /* ---- Corner web draw-in ---- */
+    .web-arc { stroke-dasharray: 3000; stroke-dashoffset: 3000; animation: webDraw 1.8s ease-out forwards; }
+    .web-spoke { stroke-dasharray: 700; stroke-dashoffset: 700; animation: webDraw 1.4s ease-out forwards; }
+    @keyframes webDraw { to { stroke-dashoffset: 0; } }
+
+    /* ---- Dangling spider ---- */
+    .spider-dangle { transform-origin: top center; animation: sway 7s ease-in-out infinite alternate; }
+    @keyframes sway { from { transform: rotate(2.6deg); } to { transform: rotate(-2.6deg); } }
+
+    /* ---- Spider drop (CTA easter egg) ---- */
+    .spidey-drop { animation: spideyDrop 3.4s cubic-bezier(.45,0,.35,1) forwards; }
+    @keyframes spideyDrop {
+      0% { transform: translateY(-220px); }
+      40% { transform: translateY(56vh); }
+      52% { transform: translateY(52vh); }
+      64% { transform: translateY(58vh); }
+      78% { transform: translateY(54vh); }
+      100% { transform: translateY(-220px); }
+    }
+
+    /* ---- Ticker ---- */
+    .ticker-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ---- Scroll cue ---- */
+    .scroll-cue { animation: cueDrop 2.2s cubic-bezier(.65,0,.35,1) infinite; }
+    @keyframes cueDrop { 0% { transform: translateY(-100%); } 55% { transform: translateY(100%); } 100% { transform: translateY(100%); } }
+
+    /* ---- Power meters ---- */
+    .meter-fill { width: 0; transition: width 1.5s cubic-bezier(.16,1,.3,1); }
+
+    /* ---- Classified stamp ---- */
+    .stamp {
+      border: 3px solid rgba(225,29,37,.85); color: rgba(225,29,37,.9);
+      letter-spacing: .3em; text-transform: uppercase;
+      box-shadow: inset 0 0 0 2px rgba(225,29,37,.15);
+      text-shadow: 0 0 12px rgba(225,29,37,.35);
+    }
+    .barcode {
+      background-image: repeating-linear-gradient(90deg,
+        #F5F5F0 0 2px, transparent 2px 5px, #F5F5F0 5px 6px, transparent 6px 9px,
+        #F5F5F0 9px 14px, transparent 14px 16px, #F5F5F0 16px 17px, transparent 17px 23px,
+        #F5F5F0 23px 26px, transparent 26px 28px);
+    }
+
+    /* ---- Hero title glow ---- */
+    .title-glow { text-shadow: 0 0 60px rgba(225,29,37,.35), 0 2px 0 rgba(0,0,0,.4); }
+
+    /* ---- Scanlines on dossier photo ---- */
+    .scanlines {
+      background: repeating-linear-gradient(0deg, rgba(245,245,240,.04) 0 1px, transparent 1px 4px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track, .spider-dangle, .scroll-cue { animation: none !important; }
+      .web-arc, .web-spoke { animation: none; stroke-dashoffset: 0; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .meter-fill { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-ink text-bone font-body antialiased overflow-x-hidden">
+
+  <!-- Reusable spider symbol -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <symbol id="spider-icon" viewBox="0 0 100 100">
+      <g stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none">
+        <path d="M43 40 C32 32, 26 24, 22 12"/>
+        <path d="M41 47 C28 44, 19 37, 12 28"/>
+        <path d="M41 55 C28 57, 18 55, 9 50"/>
+        <path d="M43 63 C33 70, 26 77, 21 88"/>
+        <path d="M57 40 C68 32, 74 24, 78 12"/>
+        <path d="M59 47 C72 44, 81 37, 88 28"/>
+        <path d="M59 55 C72 57, 82 55, 91 50"/>
+        <path d="M57 63 C67 70, 74 77, 79 88"/>
+      </g>
+      <ellipse cx="50" cy="60" rx="13" ry="17" fill="currentColor"/>
+      <circle cx="50" cy="38" r="8" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <!-- Film grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div id="progress" class="fixed top-0 left-0 h-[3px] bg-spider z-[70] w-0" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-[60] transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-md bg-spider/10 border border-spider/40 flex items-center justify-center text-spider group-hover:bg-spider group-hover:text-white transition-colors">
+          <svg class="w-5 h-5"><use href="#spider-icon"/></svg>
+        </span>
+        <span class="font-display text-2xl tracking-wider">SPIDY<span class="text-spider">-</span>AHSAN</span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8 text-[13px] tracking-[0.2em] uppercase text-bone/60">
+        <li><a data-nav="home"     href="#home"     class="hover:text-bone transition-colors">Home</a></li>
+        <li><a data-nav="origin"   href="#origin"   class="hover:text-bone transition-colors">Origin</a></li>
+        <li><a data-nav="identity" href="#identity" class="hover:text-bone transition-colors">Identity</a></li>
+        <li><a data-nav="powers"   href="#powers"   class="hover:text-bone transition-colors">Powers</a></li>
+        <li><a data-nav="gallery"  href="#gallery"  class="hover:text-bone transition-colors">Gallery</a></li>
+      </ul>
+
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-semibold border border-spider/60 text-spider hover:bg-spider hover:text-white transition-colors px-4 py-2 rounded-md">
+        <svg class="w-3.5 h-3.5"><use href="#spider-icon"/></svg> Send Signal
+      </a>
+
+      <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center border border-white/15 rounded-md" aria-label="Open menu" aria-expanded="false">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+
+    <div id="mobileMenu" class="md:hidden hidden bg-ink/95 backdrop-blur-xl border-t border-white/10">
+      <ul class="px-6 py-4 space-y-1 text-sm tracking-[0.2em] uppercase text-bone/70">
+        <li><a href="#home"     class="block py-3 border-b border-white/5">Home</a></li>
+        <li><a href="#origin"   class="block py-3 border-b border-white/5">Origin</a></li>
+        <li><a href="#identity" class="block py-3 border-b border-white/5">Identity</a></li>
+        <li><a href="#powers"   class="block py-3 border-b border-white/5">Powers</a></li>
+        <li><a href="#gallery"  class="block py-3">Gallery</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- Background photo: used EXACTLY as provided, dark overlay only -->
+    <img src="images/hero-climb.jpg" data-ph="hero-climb.jpg" width="1920" height="1280" onerror="spidyFallback(this)"
+         alt="Ahsan scaling a glass building at night in the rain"
+         class="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-center will-change-transform"
+         id="heroBg" fetchpriority="high">
+    <div class="absolute inset-0 bg-black/[.72]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/40 to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent to-ink" aria-hidden="true"></div>
+
+    <!-- Animated corner web -->
+    <svg class="absolute top-0 right-0 w-[300px] md:w-[500px] opacity-60 pointer-events-none" viewBox="0 0 520 520" fill="none" aria-hidden="true">
+      <g stroke="rgba(245,245,240,.16)" stroke-width="1.4">
+        <circle class="web-arc" cx="520" cy="0" r="90"  style="animation-delay:.1s"/>
+        <circle class="web-arc" cx="520" cy="0" r="180" style="animation-delay:.25s"/>
+        <circle class="web-arc" cx="520" cy="0" r="270" style="animation-delay:.4s"/>
+        <circle class="web-arc" cx="520" cy="0" r="360" style="animation-delay:.55s"/>
+        <circle class="web-arc" cx="520" cy="0" r="450" style="animation-delay:.7s"/>
+        <line class="web-spoke" x1="520" y1="0" x2="520" y2="470" style="animation-delay:.2s"/>
+        <line class="web-spoke" x1="520" y1="0" x2="344" y2="425" style="animation-delay:.35s"/>
+        <line class="web-spoke" x1="520" y1="0" x2="195" y2="325" style="animation-delay:.5s"/>
+        <line class="web-spoke" x1="520" y1="0" x2="95"  y2="176" style="animation-delay:.65s"/>
+        <line class="web-spoke" x1="520" y1="0" x2="60"  y2="0"   style="animation-delay:.8s"/>
+      </g>
+    </svg>
+
+    <!-- Dangling spider -->
+    <div class="hidden lg:block absolute top-0 left-[9%] opacity-50 pointer-events-none" aria-hidden="true">
+      <div class="spider-dangle">
+        <div class="w-px h-36 mx-auto bg-gradient-to-b from-transparent via-bone/50 to-bone/70"></div>
+        <svg class="w-8 h-8 text-bone/70 -mt-1 mx-auto"><use href="#spider-icon"/></svg>
+      </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
+      <p class="reveal flex items-center gap-3 text-[11px] md:text-xs tracking-[0.4em] uppercase text-bone/50 mb-6">
+        <span class="h-px w-10 bg-spider"></span> An unofficial fan tribute &mdash; Pattoki chapter
+      </p>
+
+      <h1 class="reveal" style="transition-delay:.1s">
+        <span class="block font-display text-2xl md:text-4xl tracking-[0.45em] text-bone/85">THE AMAZING</span>
+        <span class="block font-display text-[17vw] sm:text-8xl md:text-9xl leading-[0.95] text-spider title-glow mt-2">SPIDY-AHSAN</span>
+      </h1>
+
+      <p class="reveal mt-6 max-w-xl text-base md:text-lg text-bone/70 leading-relaxed" style="transition-delay:.2s">
+        Pattoki has a new guardian. And he loves chocolate cake.
+      </p>
+
+      <div class="reveal mt-8 flex flex-wrap gap-3" style="transition-delay:.3s">
+        <span class="inline-flex items-center gap-2 border border-white/15 bg-white/5 backdrop-blur px-4 py-2 rounded-full text-[11px] tracking-[0.25em] uppercase text-bone/80">
+          <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spider opacity-60"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-spider"></span></span>
+          Friendly Neighborhood Hero
+        </span>
+        <span class="inline-flex items-center gap-2 border border-white/15 bg-white/5 backdrop-blur px-4 py-2 rounded-full text-[11px] tracking-[0.25em] uppercase text-bone/80">
+          Est. 2025 &mdash; Pattoki
+        </span>
+      </div>
+
+      <div class="reveal mt-10 flex flex-wrap items-center gap-4" style="transition-delay:.4s">
+        <a href="#identity" class="inline-flex items-center gap-3 bg-spider hover:bg-[#c3131b] text-white font-semibold uppercase tracking-[0.15em] text-sm px-8 py-4 rounded-md transition-all duration-300 hover:-translate-y-0.5 shadow-[0_16px_50px_-12px_rgba(225,29,37,.65)]">
+          View Secret Identity
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v14m0 0l-6-6m6 6l6-6"/></svg>
+        </a>
+        <a href="#origin" class="inline-flex items-center gap-3 border border-white/20 hover:border-bone/60 text-bone/80 hover:text-bone uppercase tracking-[0.15em] text-sm px-8 py-4 rounded-md transition-all duration-300">
+          Read the Origin
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" aria-hidden="true">
+      <span class="text-[10px] tracking-[0.4em] uppercase text-bone/40">Scroll</span>
+      <div class="h-14 w-px bg-white/10 overflow-hidden"><div class="scroll-cue w-px h-full bg-spider"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker relative border-y border-white/10 bg-webgray/60 py-3.5 overflow-hidden select-none" aria-hidden="true">
+    <div class="ticker-track font-display text-lg md:text-xl tracking-[0.2em] text-bone/50 whitespace-nowrap">
+      <span class="flex shrink-0 items-center">
+        <span class="mx-6 text-spider">&loz;</span>THE AMAZING SPIDY-AHSAN
+        <span class="mx-6 text-spider">&loz;</span>PATTOKI&rsquo;S OWN FRIENDLY NEIGHBORHOOD HERO
+        <span class="mx-6 text-spider">&loz;</span>EST. 2025
+        <span class="mx-6 text-spider">&loz;</span>100% ORGANIC WEB FLUID
+        <span class="mx-6 text-spider">&loz;</span>NOW WITH 12% MORE CAKE
+        <span class="mx-6 text-spider">&loz;</span>WARNING: MAY ENTHUSE ABOUT PIZZA
+        <span class="mx-6 text-spider">&loz;</span>HE CAN CLIMB YOUR WALLS (LEGALLY, WE THINK)
+        <span class="mx-6 text-spider">&loz;</span>
+      </span>
+      <span class="flex shrink-0 items-center">
+        <span class="mx-6 text-spider">&loz;</span>THE AMAZING SPIDY-AHSAN
+        <span class="mx-6 text-spider">&loz;</span>PATTOKI&rsquo;S OWN FRIENDLY NEIGHBORHOOD HERO
+        <span class="mx-6 text-spider">&loz;</span>EST. 2025
+        <span class="mx-6 text-spider">&loz;</span>100% ORGANIC WEB FLUID
+        <span class="mx-6 text-spider">&loz;</span>NOW WITH 12% MORE CAKE
+        <span class="mx-6 text-spider">&loz;</span>WARNING: MAY ENTHUSE ABOUT PIZZA
+        <span class="mx-6 text-spider">&loz;</span>HE CAN CLIMB YOUR WALLS (LEGALLY, WE THINK)
+        <span class="mx-6 text-spider">&loz;</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ============ ORIGIN STORY ============ -->
+  <section id="origin" class="relative py-24 md:py-32 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="reveal flex items-center gap-3 text-[11px] tracking-[0.4em] uppercase text-spider font-semibold mb-4">
+        <span class="h-px w-8 bg-spider"></span> Chapter 01 &mdash; The Origin
+      </p>
+      <h2 class="reveal font-display text-5xl md:text-7xl leading-none">HOW IT <span class="text-spider">STARTED</span></h2>
+      <div class="reveal h-px w-24 bg-spider/70 mt-5"></div>
+
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 mt-14 items-center">
+        <!-- Photo: used EXACTLY as provided (crop only) -->
+        <figure class="reveal relative group">
+          <div class="absolute -inset-2 bg-spider/10 blur-2xl rounded-full" aria-hidden="true"></div>
+          <div class="relative rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+            <img src="images/cake-mess.jpg" data-ph="cake-mess.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+                 alt="Ahsan in his Spider-Man suit eating chocolate cake in a web-covered room"
+                 class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy">
+            <span class="absolute top-4 left-4 text-[10px] tracking-[0.3em] uppercase bg-ink/80 backdrop-blur border border-spider/50 text-spider px-3 py-1.5 rounded">Exhibit A</span>
+          </div>
+          <figcaption class="mt-4 text-xs tracking-[0.15em] uppercase text-bone/40 text-center">The crime scene. Cake was involved.</figcaption>
+        </figure>
+
+        <div>
+          <p class="reveal text-bone/60 leading-relaxed">
+            It began like any other Tuesday: extra cheese, a microwave that had seen things,
+            and absolutely no plans of becoming a legend. Then one bite changed everything &mdash;
+            mostly the ceiling, which he now uses as a sitting area.
+          </p>
+          <blockquote class="reveal border-l-2 border-spider pl-5 mt-6 text-lg md:text-xl text-bone/90 leading-relaxed" style="transition-delay:.1s">
+            Bitten by a radioactive spider while eating pizza&hellip; Now his room is full of webs,
+            pizza boxes, and responsibilities. He can climb walls, but still can&rsquo;t clean his room.
+          </blockquote>
+          <p class="reveal text-bone/50 text-sm mt-6" style="transition-delay:.2s">
+            Scientists call it &ldquo;statistically impossible.&rdquo; His mother calls it
+            &ldquo;come clean your room right now.&rdquo; Both are correct.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal grid grid-cols-1 sm:grid-cols-3 border border-white/10 rounded-lg overflow-hidden mt-16 bg-white/[.03] backdrop-blur divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+        <div class="p-8 text-center">
+          <p class="font-display text-6xl md:text-7xl text-spider"><span data-count="347" data-suffix="">0</span></p>
+          <p class="mt-2 text-[11px] tracking-[0.3em] uppercase text-bone/50">Pizzas Eaten</p>
+        </div>
+        <div class="p-8 text-center">
+          <p class="font-display text-6xl md:text-7xl text-spider"><span data-count="1200" data-suffix="+">0</span></p>
+          <p class="mt-2 text-[11px] tracking-[0.3em] uppercase text-bone/50">Webs Wasted</p>
+        </div>
+        <div class="p-8 text-center">
+          <p class="font-display text-6xl md:text-7xl text-spider"><span data-count="89" data-suffix="">0</span></p>
+          <p class="mt-2 text-[11px] tracking-[0.3em] uppercase text-bone/50">Cakes Stolen</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IDENTITY REVEAL ============ -->
+  <section id="identity" class="relative py-24 md:py-32 scroll-mt-16 bg-webgray/40 border-y border-white/10 overflow-hidden">
+    <svg class="absolute -bottom-24 -left-24 w-[420px] opacity-[.07] pointer-events-none" viewBox="0 0 520 520" fill="none" aria-hidden="true">
+      <g stroke="#F5F5F0" stroke-width="1.4">
+        <circle cx="0" cy="520" r="90"/><circle cx="0" cy="520" r="180"/><circle cx="0" cy="520" r="270"/><circle cx="0" cy="520" r="360"/><circle cx="0" cy="520" r="450"/>
+        <line x1="0" y1="520" x2="0" y2="60"/><line x1="0" y1="520" x2="176" y2="95"/><line x1="0" y1="520" x2="325" y2="195"/><line x1="0" y1="520" x2="425" y2="344"/><line x1="0" y1="520" x2="460" y2="520"/>
+      </g>
+    </svg>
+
+    <div class="max-w-5xl mx-auto px-6 relative">
+      <p class="reveal flex justify-center items-center gap-3 text-[11px] tracking-[0.4em] uppercase text-spider font-semibold mb-4">
+        <span class="h-px w-8 bg-spider"></span> Chapter 02 &mdash; The Identity <span class="h-px w-8 bg-spider"></span>
+      </p>
+      <h2 class="reveal text-center font-display text-5xl md:text-7xl leading-none">BY DAY: AHSAN.<br class="sm:hidden"> <span class="text-spider">BY NIGHT:</span> THE HERO</h2>
+      <p class="reveal text-center text-bone/60 mt-4 max-w-2xl mx-auto" style="transition-delay:.1s">
+        The hero Pattoki didn&rsquo;t ask for &mdash; but got anyway.
+      </p>
+
+      <!-- Dossier file -->
+      <div class="reveal relative mt-14 rounded-lg border border-white/15 bg-ink/80 backdrop-blur-xl shadow-[0_40px_120px_-30px_rgba(0,0,0,.9)] overflow-hidden" style="transition-delay:.15s">
+        <div class="flex items-center justify-between px-5 md:px-8 py-4 border-b border-white/10 bg-white/[.03]">
+          <p class="text-[10px] md:text-xs tracking-[0.3em] uppercase text-bone/60">Strategic Hazard Intervention &amp; Emergency Logistics Division &mdash; Pattoki Branch</p>
+          <p class="hidden sm:block text-[10px] tracking-[0.3em] uppercase text-spider">File No. SA-2025-042</p>
+        </div>
+
+        <div class="grid md:grid-cols-[2fr_3fr] gap-8 p-6 md:p-10">
+          <!-- Subject photo: used EXACTLY as provided (crop only) -->
+          <div class="relative mx-auto w-full max-w-xs">
+            <div class="relative rounded border border-white/15 overflow-hidden">
+              <img src="images/indoor-hero.jpg" data-ph="indoor-hero.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+                   alt="Ahsan standing indoors in his Spider-Man suit"
+                   class="w-full aspect-[4/5] object-cover object-top" loading="lazy">
+              <div class="absolute inset-0 scanlines pointer-events-none" aria-hidden="true"></div>
+              <span class="stamp absolute top-4 -right-3 rotate-12 text-[10px] md:text-xs font-bold px-3 py-1.5 bg-ink/60 backdrop-blur-sm">Classified</span>
+            </div>
+            <p class="mt-3 text-center text-[10px] tracking-[0.2em] uppercase text-bone/40">Fig 2.1 &mdash; Subject standing indoors, doing nothing suspicious</p>
+          </div>
+
+          <!-- Data fields -->
+          <dl class="text-sm divide-y divide-white/10">
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Subject</dt><dd class="font-semibold tracking-wide">AHSAN</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Alias</dt><dd class="font-semibold tracking-wide text-spider">SPIDY-AHSAN</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Known Aliases</dt><dd class="text-bone/80">&ldquo;Bro, it&rsquo;s me&rdquo; &middot; &ldquo;The Cake Phantom&rdquo;</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Base</dt><dd class="text-bone/80">Pattoki, Punjab &mdash; his room, mostly (see: webs)</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Threat Level</dt><dd class="text-bone/80">Charming</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Weaknesses</dt><dd class="text-bone/80">Chocolate cake &middot; alarm clocks &middot; laundry</dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Last Seen</dt><dd class="text-bone/80"><span class="inline-block w-16 h-4 align-middle bg-bone/70 rounded-sm"></span> eating <span class="inline-block w-20 h-4 align-middle bg-bone/70 rounded-sm"></span></dd></div>
+            <div class="grid grid-cols-[130px_1fr] gap-4 py-3"><dt class="text-bone/40 uppercase tracking-[0.2em] text-[11px] pt-0.5">Status</dt><dd class="text-bone/80 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-spider animate-pulse"></span> ACTIVE <span class="text-bone/40">(probably sleeping)</span></dd></div>
+          </dl>
+        </div>
+
+        <div class="flex items-center justify-between gap-6 px-6 md:px-10 py-5 border-t border-white/10 bg-white/[.02]">
+          <div class="barcode h-8 w-40 opacity-70" aria-hidden="true"></div>
+          <p class="text-[10px] tracking-[0.35em] uppercase text-bone/40 text-right">Identity status: worst-kept secret in Pattoki</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POWERS ============ -->
+  <section id="powers" class="relative py-24 md:py-32 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="reveal flex items-center gap-3 text-[11px] tracking-[0.4em] uppercase text-spider font-semibold mb-4">
+        <span class="h-px w-8 bg-spider"></span> Chapter 03 &mdash; The Powers
+      </p>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <h2 class="reveal font-display text-5xl md:text-7xl leading-none">POWERS &amp; <span class="text-spider">ABILITIES</span></h2>
+          <div class="reveal h-px w-24 bg-spider/70 mt-5"></div>
+        </div>
+        <p class="reveal text-bone/50 text-sm max-w-xs" style="transition-delay:.1s">Three confirmed abilities. Zero confirmed chores.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-14">
+        <!-- Card 1: web-closeup.jpg -->
+        <article class="reveal group rounded-lg border border-white/10 bg-white/[.04] backdrop-blur overflow-hidden hover:border-spider/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-30px_rgba(225,29,37,.35)]">
+          <div class="relative h-60 overflow-hidden">
+            <img src="images/web-closeup.jpg" data-ph="web-closeup.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+                 alt="Close-up of Ahsan's hand shooting web"
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-4 font-display text-lg tracking-[0.15em] text-bone/90">01 / WEB SHOOTING</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-3xl">WEB SHOOTERS</h3>
+            <p class="mt-2 text-sm text-bone/60 leading-relaxed">98% accuracy. The other 2% hits his own face.</p>
+            <div class="mt-5 space-y-3">
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Accuracy</span><span>98%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-spider rounded-full" data-val="98"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Self-hits</span><span>2%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-bone/40 rounded-full" data-val="2"></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: mountain-strength.jpg -->
+        <article class="reveal group rounded-lg border border-white/10 bg-white/[.04] backdrop-blur overflow-hidden hover:border-spider/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-30px_rgba(225,29,37,.35)]" style="transition-delay:.12s">
+          <div class="relative h-60 overflow-hidden">
+            <img src="images/mountain-strength.jpg" data-ph="mountain-strength.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+                 alt="Ahsan on a mountain lifting a rock slab held together with webs"
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-4 font-display text-lg tracking-[0.15em] text-bone/90">02 / SUPER STRENGTH</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-3xl">SUPER STRENGTH</h3>
+            <p class="mt-2 text-sm text-bone/60 leading-relaxed">Can lift rocks. Cannot lift his own responsibilities.</p>
+            <div class="mt-5 space-y-3">
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Lift capacity</span><span>92%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-spider rounded-full" data-val="92"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Responsibility</span><span>7%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-bone/40 rounded-full" data-val="7"></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: hero-climb.jpg (cropped) -->
+        <article class="reveal group rounded-lg border border-white/10 bg-white/[.04] backdrop-blur overflow-hidden hover:border-spider/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-30px_rgba(225,29,37,.35)]" style="transition-delay:.24s">
+          <div class="relative h-60 overflow-hidden">
+            <img src="images/hero-climb.jpg" data-ph="hero-climb.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+                 alt="Ahsan clinging to a glass building facade at night"
+                 class="w-full h-full object-cover object-[60%_18%] transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-4 font-display text-lg tracking-[0.15em] text-bone/90">03 / WALL CRAWLING</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-3xl">WALL CRAWLING</h3>
+            <p class="mt-2 text-sm text-bone/60 leading-relaxed">Works on buildings. Does not work on slippery floors.</p>
+            <div class="mt-5 space-y-3">
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Grip</span><span>96%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-spider rounded-full" data-val="96"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] tracking-[0.25em] uppercase text-bone/50 mb-1.5"><span>Floor safety</span><span>12%</span></div>
+                <div class="h-1 rounded-full bg-white/10 overflow-hidden"><div class="meter-fill h-full bg-bone/40 rounded-full" data-val="12"></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="relative py-24 md:py-32 scroll-mt-16 bg-webgray/40 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="reveal flex items-center gap-3 text-[11px] tracking-[0.4em] uppercase text-spider font-semibold mb-4">
+        <span class="h-px w-8 bg-spider"></span> Chapter 04 &mdash; The Evidence
+      </p>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <h2 class="reveal font-display text-5xl md:text-7xl leading-none">CLASSIFIED <span class="text-spider">FOOTAGE</span></h2>
+        <p class="reveal text-bone/50 text-sm max-w-xs" style="transition-delay:.1s">Leaked from a very secure phone gallery. Click any frame to enlarge the evidence.</p>
+      </div>
+
+      <div id="galleryGrid" class="columns-1 sm:columns-2 lg:columns-3 gap-5 mt-14 [column-fill:balance]">
+        <!-- 1 -->
+        <figure class="g-item reveal break-inside-avoid mb-5 group relative rounded-lg overflow-hidden border border-white/10 bg-ink cursor-zoom-in">
+          <img src="images/hero-climb.jpg" data-ph="hero-climb.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+               alt="Ahsan climbing a glass building at night in the rain"
+               class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4" aria-hidden="true">
+            <span class="text-[10px] tracking-[0.3em] uppercase border border-spider/60 text-spider px-2.5 py-1 rounded bg-ink/70">Top Secret</span>
+            <span class="text-bone/80 text-lg">&#x2922;</span>
+          </div>
+          <figcaption class="p-4 text-sm text-bone/70 leading-snug"><span class="text-spider font-semibold tracking-[0.2em] text-[10px] uppercase mr-2">Exhibit 01</span>&ldquo;The rent was too high, so I live on the walls now.&rdquo;</figcaption>
+        </figure>
+        <!-- 2 -->
+        <figure class="g-item reveal break-inside-avoid mb-5 group relative rounded-lg overflow-hidden border border-white/10 bg-ink cursor-zoom-in" style="transition-delay:.08s">
+          <img src="images/cake-mess.jpg" data-ph="cake-mess.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+               alt="Ahsan in Spider-Man suit eating chocolate cake in a web-filled room"
+               class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4" aria-hidden="true">
+            <span class="text-[10px] tracking-[0.3em] uppercase border border-spider/60 text-spider px-2.5 py-1 rounded bg-ink/70">Top Secret</span>
+            <span class="text-bone/80 text-lg">&#x2922;</span>
+          </div>
+          <figcaption class="p-4 text-sm text-bone/70 leading-snug"><span class="text-spider font-semibold tracking-[0.2em] text-[10px] uppercase mr-2">Exhibit 02</span>&ldquo;Diet plan: 90% cake, 10% web fluid.&rdquo;</figcaption>
+        </figure>
+        <!-- 3 -->
+        <figure class="g-item reveal break-inside-avoid mb-5 group relative rounded-lg overflow-hidden border border-white/10 bg-ink cursor-zoom-in" style="transition-delay:.16s">
+          <img src="images/mountain-strength.jpg" data-ph="mountain-strength.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+               alt="Ahsan lifting a rock slab on a mountain using webs"
+               class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4" aria-hidden="true">
+            <span class="text-[10px] tracking-[0.3em] uppercase border border-spider/60 text-spider px-2.5 py-1 rounded bg-ink/70">Top Secret</span>
+            <span class="text-bone/80 text-lg">&#x2922;</span>
+          </div>
+          <figcaption class="p-4 text-sm text-bone/70 leading-snug"><span class="text-spider font-semibold tracking-[0.2em] text-[10px] uppercase mr-2">Exhibit 03</span>&ldquo;Lifted a mountain. Couldn&rsquo;t lift himself off the bed.&rdquo;</figcaption>
+        </figure>
+        <!-- 4 -->
+        <figure class="g-item reveal break-inside-avoid mb-5 group relative rounded-lg overflow-hidden border border-white/10 bg-ink cursor-zoom-in" style="transition-delay:.24s">
+          <img src="images/indoor-hero.jpg" data-ph="indoor-hero.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+               alt="Ahsan standing indoors in his Spider-Man suit"
+               class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4" aria-hidden="true">
+            <span class="text-[10px] tracking-[0.3em] uppercase border border-spider/60 text-spider px-2.5 py-1 rounded bg-ink/70">Top Secret</span>
+            <span class="text-bone/80 text-lg">&#x2922;</span>
+          </div>
+          <figcaption class="p-4 text-sm text-bone/70 leading-snug"><span class="text-spider font-semibold tracking-[0.2em] text-[10px] uppercase mr-2">Exhibit 04</span>&ldquo;Suit: ironed. Room: still a disaster. Priorities.&rdquo;</figcaption>
+        </figure>
+        <!-- 5 -->
+        <figure class="g-item reveal break-inside-avoid mb-5 group relative rounded-lg overflow-hidden border border-white/10 bg-ink cursor-zoom-in" style="transition-delay:.32s">
+          <img src="images/web-closeup.jpg" data-ph="web-closeup.jpg" width="800" height="1000" onerror="spidyFallback(this)"
+               alt="Close-up of a hand shooting web"
+               class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4" aria-hidden="true">
+            <span class="text-[10px] tracking-[0.3em] uppercase border border-spider/60 text-spider px-2.5 py-1 rounded bg-ink/70">Top Secret</span>
+            <span class="text-bone/80 text-lg">&#x2922;</span>
+          </div>
+          <figcaption class="p-4 text-sm text-bone/70 leading-snug"><span class="text-spider font-semibold tracking-[0.2em] text-[10px] uppercase mr-2">Exhibit 05</span>&ldquo;Thwip. (He practiced this pose for 45 minutes.)&rdquo;</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section id="contact" class="relative py-28 md:py-40 scroll-mt-16 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(225,29,37,.14),transparent_60%)]" aria-hidden="true"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative">
+      <p class="reveal flex justify-center items-center gap-3 text-[11px] tracking-[0.4em] uppercase text-spider font-semibold mb-5">
+        <span class="h-px w-8 bg-spider"></span> Chapter 05 &mdash; The Signal <span class="h-px w-8 bg-spider"></span>
+      </p>
+      <h2 class="reveal font-display text-5xl md:text-8xl leading-[0.95]">NEED HELP?<br>OR NEED SOMEONE TO <span class="text-spider title-glow">EAT YOUR CAKE?</span></h2>
+      <p class="reveal text-bone/60 mt-6 max-w-xl mx-auto" style="transition-delay:.1s">
+        Web-signal open 24/7. Average response time: whenever he wakes up.
+      </p>
+      <button id="callBtn" class="reveal mt-10 inline-flex items-center gap-3 bg-spider hover:bg-[#c3131b] text-white font-semibold uppercase tracking-[0.15em] text-sm px-10 py-5 rounded-md transition-all duration-300 hover:-translate-y-0.5 shadow-[0_20px_60px_-15px_rgba(225,29,37,.7)]" style="transition-delay:.2s">
+        <svg class="w-5 h-5"><use href="#spider-icon"/></svg>
+        Call Spidy-Ahsan (He Might Be Sleeping)
+      </button>
+      <p class="reveal text-bone/35 text-xs mt-5 tracking-[0.2em] uppercase" style="transition-delay:.3s">Side effects may include: leftovers disappearing</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-white/10 bg-webgray/60">
+    <div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
+      <div>
+        <a href="#home" class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-md bg-spider/10 border border-spider/40 flex items-center justify-center text-spider">
+            <svg class="w-5 h-5"><use href="#spider-icon"/></svg>
+          </span>
+          <span class="font-display text-2xl tracking-wider">SPIDY<span class="text-spider">-</span>AHSAN</span>
+        </a>
+        <p class="mt-4 text-sm text-bone/50 leading-relaxed">Pattoki&rsquo;s own friendly neighborhood hero. Patrolling ceilings, protecting cake, avoiding chores since 2025.</p>
+      </div>
+      <div>
+        <p class="text-[11px] tracking-[0.3em] uppercase text-bone/40 mb-4">Navigate</p>
+        <ul class="space-y-2.5 text-sm text-bone/60">
+          <li><a href="#home" class="hover:text-spider transition-colors">Home</a></li>
+          <li><a href="#origin" class="hover:text-spider transition-colors">Origin Story</a></li>
+          <li><a href="#identity" class="hover:text-spider transition-colors">Identity File</a></li>
+          <li><a href="#powers" class="hover:text-spider transition-colors">Powers</a></li>
+          <li><a href="#gallery" class="hover:text-spider transition-colors">Classified Footage</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[11px] tracking-[0.3em] uppercase text-bone/40 mb-4">Fine Print</p>
+        <p class="text-xs text-bone/40 leading-relaxed">
+          Disclaimer: This is a friendly prank website. Not affiliated with Marvel. All images are original
+          and faces are preserved 100%. Made with love in Pattoki.
+        </p>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-bone/40">
+        <p>Spidy-Ahsan &copy; 2025</p>
+        <p class="flex items-center gap-2">Made with <span class="text-spider">&#10084;</span> (and questionable web fluid) in Pattoki</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-10" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lbClose" class="absolute top-5 right-5 w-11 h-11 flex items-center justify-center border border-white/20 rounded-full text-bone/70 hover:text-white hover:border-spider hover:bg-spider/20 transition-colors" aria-label="Close">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button id="lbPrev" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center border border-white/20 rounded-full text-bone/70 hover:text-white hover:border-spider hover:bg-spider/20 transition-colors" aria-label="Previous image">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button id="lbNext" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center border border-white/20 rounded-full text-bone/70 hover:text-white hover:border-spider hover:bg-spider/20 transition-colors" aria-label="Next image">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure class="max-w-4xl w-full text-center">
+      <img id="lbImg" src="" alt="" class="max-h-[74vh] w-auto max-w-full mx-auto rounded-lg border border-white/15 shadow-2xl">
+      <figcaption class="mt-4 text-sm text-bone/70"><span id="lbExhibit" class="text-spider font-semibold tracking-[0.25em] text-[10px] uppercase mr-2"></span><span id="lbCaption"></span></figcaption>
+      <p id="lbCounter" class="mt-2 text-[10px] tracking-[0.35em] uppercase text-bone/35"></p>
+    </figure>
+  </div>
+
+  <!-- Toast -->
+  <div id="toastWrap" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] flex flex-col items-center gap-2 pointer-events-none px-4 w-full max-w-md"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Scroll progress + navbar ---------- */
+    var progress = document.getElementById('progress');
+    var navbar = document.getElementById('navbar');
+    var heroBg = document.getElementById('heroBg');
+    var ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+        if (y > 40) navbar.classList.add('bg-ink/85', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'shadow-lg');
+        else navbar.classList.remove('bg-ink/85', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'shadow-lg');
+        if (!RM && y < window.innerHeight * 1.2 && heroBg) {
+          heroBg.style.transform = 'translateY(' + y * 0.35 + 'px)';
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ---------- Mobile menu ---------- */
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ---------- Scroll reveal ---------- */
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          if (e.target.querySelector) {
+            e.target.querySelectorAll('.meter-fill').forEach(function (m) {
+              m.style.width = m.getAttribute('data-val') + '%';
+            });
+          }
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+    /* ---------- Count-up stats ---------- */
+    function animateCount(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (RM) { el.textContent = target.toLocaleString() + suffix; return; }
+      var dur = 1700, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(function (el) { countObserver.observe(el); });
+
+    /* ---------- Active nav link ---------- */
+    var navLinks = document.querySelectorAll('[data-nav]');
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) {
+            l.classList.toggle('text-spider', l.getAttribute('data-nav') === e.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ['home', 'origin', 'identity', 'powers', 'gallery'].forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) sectionObserver.observe(s);
+    });
+
+    /* ---------- Lightbox ---------- */
+    var items = Array.prototype.slice.call(document.querySelectorAll('.g-item'));
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lbImg');
+    var lbCaption = document.getElementById('lbCaption');
+    var lbExhibit = document.getElementById('lbExhibit');
+    var lbCounter = document.getElementById('lbCounter');
+    var idx = 0;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function show(i) {
+      idx = (i + items.length) % items.length;
+      var img = items[idx].querySelector('img');
+      var cap = items[idx].querySelector('figcaption');
+      var exhibit = cap ? cap.querySelector('span') : null;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = exhibit ? cap.textContent.replace(exhibit.textContent, '').trim() : '';
+      lbExhibit.textContent = exhibit ? exhibit.textContent : '';
+      lbCounter.textContent = pad(idx + 1) + ' / ' + pad(items.length);
+    }
+    function openLb(i) { show(i); lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+    function closeLb() { lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
+
+    items.forEach(function (fig, i) {
+      fig.addEventListener('click', function () { openLb(i); });
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function (e) {
+      if (lb.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowRight') show(idx + 1);
+      if (e.key === 'ArrowLeft') show(idx - 1);
+    });
+
+    /* ---------- Toast ---------- */
+    var toastWrap = document.getElementById('toastWrap');
+    function showToast(msg) {
+      var t = document.createElement('div');
+      t.className = 'pointer-events-auto bg-webgray/95 backdrop-blur border border-spider/40 text-bone text-sm rounded-lg px-5 py-3.5 shadow-[0_20px_60px_-15px_rgba(225,29,37,.4)] opacity-0 translate-y-3 transition-all duration-500 max-w-md text-center';
+      t.textContent = msg;
+      toastWrap.appendChild(t);
+      requestAnimationFrame(function () { t.classList.remove('opacity-0', 'translate-y-3'); });
+      setTimeout(function () {
+        t.classList.add('opacity-0', 'translate-y-3');
+        setTimeout(function () { t.remove(); }, 500);
+      }, 4200);
+    }
+
+    /* ---------- Spider drop + CTA ---------- */
+    function dropSpider() {
+      if (document.getElementById('dropSpider')) return;
+      var wrap = document.createElement('div');
+      wrap.id = 'dropSpider';
+      wrap.className = 'fixed left-1/2 -translate-x-1/2 top-0 z-[105] pointer-events-none';
+      wrap.innerHTML = '<div class="spidey-drop flex flex-col items-center">' +
+        '<div class="w-px h-32 bg-gradient-to-b from-transparent via-bone/50 to-bone/80"></div>' +
+        '<svg class="w-9 h-9 text-spider -mt-1" style="filter: drop-shadow(0 0 12px rgba(225,29,37,.6))"><use href="#spider-icon"/></svg></div>';
+      document.body.appendChild(wrap);
+      wrap.querySelector('.spidey-drop').addEventListener('animationend', function () { wrap.remove(); });
+    }
+
+    document.getElementById('callBtn').addEventListener('click', function () {
+      dropSpider();
+      var msgs = [
+        '\uD83D\uDD78 Web-signal launched! Ahsan has been notified. His mom will wake him up.',
+        'Signal received! Estimated response: 3\u20135 business days (he\u2019s napping).',
+        '\uD83D\uDD78 Thwip! He heard you. He\u2019s choosing to finish the cake first.',
+        'The hero is on his way! First he needs to find his other shoe. On the ceiling.'
+      ];
+      showToast(msgs[Math.floor(Math.random() * msgs.length)]);
+    });
+
+    /* ---------- Tab title easter egg ---------- */
+    var baseTitle = document.title;
+    document.addEventListener('visibilitychange', function () {
+      document.title = document.hidden ? '\uD83D\uDD77\uFE0F Spidy-Ahsan is on patrol\u2026 come back!' : baseTitle;
+    });
+  })();
+  </script>
+</body>
+</html>
